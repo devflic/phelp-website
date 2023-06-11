@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Payment Form</title>
+  <link rel="stylesheet" href="home.css">
+  <style>
+    
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+
+    h2 {
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    input[type="submit"] {
+      margin-top: 10px;
+      padding: 10px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h2>Payment Form</h2>
+
+  <form id="paymentForm">
+    <label for="frequency">Payment Frequency:</label>
+    <select id="frequency" name="frequency">
+      <option value="daily">Daily</option>
+      <option value="weekly">Weekly</option>
+      <option value="monthly">Monthly</option>
+    </select>
+
+    <label for="phoneNumber">Phone Number:</label>
+    <input type="text" id="phoneNumber" name="phoneNumber" placeholder="Enter your phone number">
+
+    <input type="submit" value="Submit">
+  </form>
+
+  <script>
+    document.getElementById("paymentForm").addEventListener("submit", function(event) {
+      event.preventDefault();
+
+      var frequency = document.getElementById("frequency").value;
+      var phoneNumber = document.getElementById("phoneNumber").value;
+
+      // Prepare the SMS message
+      var message = "Please make a payment of KES ";
+
+      if (frequency === "daily") {
+        message += "100";
+      } else if (frequency === "weekly") {
+        message += "500";
+      } else if (frequency === "monthly") {
+        message += "2000";
+      }
+
+      message += " to 072xxxxxxx (M-Pesa) or 073xxxxxxx (Airtel Money).";
+
+      // Open the SMS app with the message
+      window.location.href = "sms:072xxxxxxx,073xxxxxxx?body=" + encodeURIComponent(message);
+    });
+  </script>
+</body>
+</html>

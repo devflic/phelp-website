@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Hospital Form</title>
+  <link rel="stylesheet" href="home.css">
+  <style>
+    /* CSS styling */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+    
+    .form-group {
+      margin-bottom: 20px;
+    }
+    
+    label {
+      display: inline-block;
+      width: 150px;
+      font-weight: bold;
+    }
+    
+    input[type="text"] {
+      width: 200px;
+      padding: 5px;
+    }
+    
+    button {
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h2>Hospital Form</h2>
+  
+  <div class="form-group">
+    <label for="walletBalance">Wallet Balance:</label>
+    <input type="text" id="walletBalance" name="walletBalance">
+  </div>
+  
+  <div class="form-group">
+    <label for="paidBalance">Paid Balance:</label>
+    <input type="text" id="paidBalance" name="paidBalance">
+  </div>
+  
+  <div class="form-group">
+    <label for="referrals">Number of Referrals:</label>
+    <input type="text" id="referrals" name="referrals">
+  </div>
+  
+  <div class="form-group">
+    <label for="amountPayable">Amount Payable:</label>
+    <input type="text" id="amountPayable" name="amountPayable" readonly>
+  </div>
+  
+  <button onclick="calculateAmountPayable()">Calculate</button>
+  
+  <script>
+    function calculateAmountPayable() {
+      // Get the input values
+      var walletBalance = parseFloat(document.getElementById("walletBalance").value);
+      var paidBalance = parseFloat(document.getElementById("paidBalance").value);
+      var referrals = parseInt(document.getElementById("referrals").value);
+      
+      // Calculate the amount payable
+      var amountPayable = walletBalance - paidBalance - (referrals * 100);
+      
+      // Display the calculated amount payable
+      document.getElementById("amountPayable").value = amountPayable.toFixed(2);
+    }
+  </script>
+</body>
+</html>
